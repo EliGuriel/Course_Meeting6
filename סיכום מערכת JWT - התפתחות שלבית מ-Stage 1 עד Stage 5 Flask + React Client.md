@@ -14,8 +14,8 @@
 Course_Meeting6/                   (Parent POM)
 ├── pom.xml                        (Parent עם כל התלויות)
 ├── Stage1/                        (JWT בסיסי)
-├── Stage2/                        (אימות מלא)
-├── Stage3/                        (Refresh Tokens)
+├── Stage2/                        (אימות JWT + Spring Security)
+├── Stage3/                        (Refresh Token הוספת)
 ├── Stage4/                        (Token Blacklist + IP Validation)
 ├── Stage5/                        (Enterprise Security) with Stateless Architecture and Flask Server
 ├── FlaskServer/                   (Flask Server for JWT)
