@@ -1,6 +1,8 @@
 <div dir="rtl">
 
-# סיכום מערכת JWT - התפתחות שלבית מ-Stage 1 עד Stage 5 Flask Server + React Client
+### מערכת אבטחה מבוססת JWT Token
+- התפתחות שלבית מ-Stage1 
+- עד Stage5 Flask Server + React Client
 
 ## מבנה הפרויקט הכללי
 
@@ -9,15 +11,15 @@
 </div>
 
 ```
-JwtSecurity2024/                    (Parent POM)
+Course_Meeting6/                   (Parent POM)
 ├── pom.xml                        (Parent עם כל התלויות)
 ├── Stage1/                        (JWT בסיסי)
 ├── Stage2/                        (אימות מלא)
 ├── Stage3/                        (Refresh Tokens)
 ├── Stage4/                        (Token Blacklist + IP Validation)
 ├── Stage5/                        (Enterprise Security) with Stateless Architecture and Flask Server
-│   FlaskServer/                (Flask Server for JWT)
-└── Stage4-React-Vite/            (React Client Application)
+├── FlaskServer/                   (Flask Server for JWT)
+└── Stage4-React-Vite/             (React Client Application)
 ```
 
 <div dir="rtl">
