@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true) // enable debug mode to see the security filter chain in action
 @RequiredArgsConstructor
 public class SecurityConfig {
 

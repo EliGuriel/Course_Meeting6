@@ -49,8 +49,8 @@ public class CustomLogoutHandler implements LogoutSuccessHandler {
             if (accessToken != null && !accessToken.trim().isEmpty()) {
                 // Blocklist the access token to prevent its future use
                 tokenBlacklistService.addToBlacklist(accessToken);
-                System.out.println("✓ Access token blacklisted successfully");
-                System.out.println("✓ Token length: " + accessToken.length());
+                System.out.println("Access token blacklisted successfully");
+                System.out.println("Token length: " + accessToken.length());
                 
                 // Set successful response
                 response.setStatus(HttpServletResponse.SC_OK);
@@ -59,7 +59,7 @@ public class CustomLogoutHandler implements LogoutSuccessHandler {
                 
                 System.out.println("=== Logout Process Completed Successfully ===");
             } else {
-                System.out.println("⚠ No access token found in request");
+                System.out.println("No access token found in request");
                 // Still consider it a successful logout
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.setContentType("application/json");
@@ -98,14 +98,14 @@ public class CustomLogoutHandler implements LogoutSuccessHandler {
         String header = request.getHeader(JwtProperties.HEADER_STRING);
         if (header != null && header.startsWith(JwtProperties.TOKEN_PREFIX)) {
             String token = header.substring(JwtProperties.TOKEN_PREFIX.length());
-            System.out.println("✓ Token found in Authorization header");
+            System.out.println("Token found in Authorization header");
             return token;
         }
         
         // Alternatively, try to get a token from query parameter
         String queryToken = request.getParameter("token");
         if (queryToken != null && !queryToken.trim().isEmpty()) {
-            System.out.println("✓ Token found in query parameter");
+            System.out.println("Token found in query parameter");
             return queryToken;
         }
         

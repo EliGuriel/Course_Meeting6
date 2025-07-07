@@ -41,8 +41,8 @@ public class CustomUserDetailsService implements UserDetailsService {
      * @param username The username to search for
      * @return UserDetails object containing user information and authorities
      * @throws UsernameNotFoundException if user is not found
-     * @throws DisabledException if user account is disabled
-     * @throws LockedException if user account is locked
+     * @throws DisabledException if a user account is disabled
+     * @throws LockedException if a user account is locked
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

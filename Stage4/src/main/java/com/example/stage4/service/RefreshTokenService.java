@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * RefreshTokenService - Stage 4 Enhanced Stateless Implementation
- * 
+ * <p>
  * This service handles token refresh operations with enhanced security features:
  * - Token blacklist validation to prevent reuse of revoked tokens
  * - IP address validation using claims embedded in JWT tokens
@@ -42,14 +42,14 @@ public class RefreshTokenService {
                 System.out.println("Refresh token is blacklisted - potential security threat");
                 throw new RuntimeException("Refresh token is blacklisted. Please login again.");
             }
-            System.out.println("✓ Refresh token is not blacklisted");
+            System.out.println("Refresh token is not blacklisted");
 
             // Step 2: Validate refresh token is not expired
             if (jwtUtil.isTokenExpired(refreshToken)) {
                 System.out.println("Refresh token has expired");
                 throw new RuntimeException("Refresh token has expired. Please login again.");
             }
-            System.out.println("✓ Refresh token is not expired");
+            System.out.println("Refresh token is not expired");
 
             // Step 3: Extract data from refresh token
             String username = jwtUtil.extractUsername(refreshToken);
@@ -64,13 +64,13 @@ public class RefreshTokenService {
                 System.out.println("Token IP: " + tokenIpAddress + ", Request IP: " + currentIpAddress);
                 throw new RuntimeException("Invalid refresh token: IP address mismatch. Please login again for security reasons.");
             }
-            System.out.println("✓ IP address validation passed");
+            System.out.println("IP address validation passed");
 
             // Step 5: Load user details to ensure user still exists and is valid
             UserDetails userDetails;
             try {
                 userDetails = customUserDetailsService.loadUserByUsername(username);
-                System.out.println("✓ User details loaded successfully for: " + username);
+                System.out.println("User details loaded successfully for: " + username);
             } catch (UsernameNotFoundException e) {
                 System.out.println("User not found during refresh: " + username);
                 throw new RuntimeException("User not found: " + username + ". Please login again.");
@@ -78,13 +78,13 @@ public class RefreshTokenService {
 
             // Step 6: Blocklist the old refresh token (token rotation for security)
             tokenBlacklistService.addToBlacklist(refreshToken);
-            System.out.println("✓ Old refresh token blacklisted for security (token rotation)");
+            System.out.println("Old refresh token blacklisted for security (token rotation)");
 
             // Step 7: Generate a new token pair with the same IP address
             String newAccessToken = jwtUtil.generateAccessToken(userDetails, currentIpAddress);
             String newRefreshToken = jwtUtil.generateRefreshToken(userDetails, currentIpAddress);
 
-            System.out.println("✓ New tokens generated successfully");
+            System.out.println("New tokens generated successfully");
             System.out.println("New access token length: " + newAccessToken.length());
             System.out.println("New refresh token length: " + newRefreshToken.length());
             System.out.println("=== Token Refresh Process Completed Successfully ===");

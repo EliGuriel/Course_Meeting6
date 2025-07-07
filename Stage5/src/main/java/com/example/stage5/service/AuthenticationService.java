@@ -48,7 +48,7 @@ public class AuthenticationService {
             UserDetails userDetails;
             try {
                 userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-                System.out.println("✓ User details loaded successfully");
+                System.out.println("User details loaded successfully");
             } catch (UsernameNotFoundException e) {
                 System.out.println("User not found: " + authenticationRequest.getUsername());
                 throw new AuthenticationServiceException("Invalid credentials");
@@ -60,7 +60,7 @@ public class AuthenticationService {
             // Step 2: Validate credentials
             try {
                 validateCredentials(authenticationRequest.getPassword(), userDetails.getPassword());
-                System.out.println("✓ Password validation successful");
+                System.out.println("Password validation successful");
             } catch (AuthenticationServiceException e) {
                 System.out.println("Password validation failed for user: " + authenticationRequest.getUsername());
                 throw e; // Re-throw authentication service exception
@@ -70,7 +70,7 @@ public class AuthenticationService {
             String accessToken = jwtUtil.generateAccessToken(userDetails, ipAddress);
             String refreshToken = jwtUtil.generateRefreshToken(userDetails, ipAddress);
             
-            System.out.println("✓ Tokens generated successfully");
+            System.out.println("Tokens generated successfully");
             System.out.println("Access token length: " + accessToken.length());
             System.out.println("Refresh token length: " + refreshToken.length());
             
@@ -78,14 +78,14 @@ public class AuthenticationService {
             try {
                 validateTokenNotBlacklisted(accessToken);
                 validateTokenNotBlacklisted(refreshToken);
-                System.out.println("✓ Token blacklist validation passed");
+                System.out.println("Token blacklist validation passed");
             } catch (AuthenticationServiceException e) {
                 System.out.println("Token blacklist validation failed");
                 throw e;
             }
             
-            System.out.println("✓ User authenticated successfully: " + authenticationRequest.getUsername());
-            System.out.println("✓ IP address embedded in tokens: " + ipAddress);
+            System.out.println("User authenticated successfully: " + authenticationRequest.getUsername());
+            System.out.println("IP address embedded in tokens: " + ipAddress);
             System.out.println("=== Authentication Process Completed Successfully ===");
             
             return new AuthenticationResponse(accessToken, refreshToken);

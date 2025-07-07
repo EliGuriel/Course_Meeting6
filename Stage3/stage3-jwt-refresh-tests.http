@@ -113,7 +113,7 @@ POST {{baseUrl}}/api/refresh_token
 Content-Type: {{contentType}}
 
 {
-"refreshToken": "invalid.refresh.token.here"
+"refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1MTkwMTAxOSwiZXhwIjoxNzUxOTAxNjE5LCJpc3N1ZWRCeSI6ImxlYXJuaW5nIEpXVCB3aXRoIFNwcmluZyBTZWN1cml0eSIsInRva2VuVHlwZSI6InJlZnJlc2gifQ.79CQ2WpwNTt7PIrUadJhZlTXWA9lBFy4XL08we1CJ8o"
 }
 
 ### Expected: 500 Internal Server Error or 401 Unauthorized

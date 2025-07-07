@@ -45,7 +45,7 @@ Content-Type: {{contentType}}
 
 ### 2.1 Test Admin Access - PASTE ADMIN TOKEN BELOW - Authorization: Bearer PASTE_ADMIN_TOKEN_HERE
 GET {{baseUrl}}/api/protected-message-admin
-Authorization: Bearer PASTE_ADMIN_TOKEN_HERE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1MTg5ODY2NSwiZXhwIjoxNzUxODk4Njk1LCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzc3VlZEJ5IjoibGVhcm5pbmcgSldUIHdpdGggU3ByaW5nIFNlY3VyaXR5In0.uVnmzKq7qzGYKYR3r_w3-aHU1uTx6FweIkwsY7wVheU
 
 Content-Type: {{contentType}}
 

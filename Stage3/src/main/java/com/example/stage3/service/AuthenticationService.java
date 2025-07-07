@@ -41,9 +41,6 @@ public class AuthenticationService {
         // generate the refresh token
         String refreshToken = jwtUtil.generateRefreshToken(userDetails);
 
-        // get the user's roles
-        Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
-
         // return the AuthenticationResponse object
         return new AuthenticationResponse(jwtToken, refreshToken);
     }

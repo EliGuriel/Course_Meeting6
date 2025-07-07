@@ -31,7 +31,7 @@ public class RefreshTokenService {
         // generate a new JWT token from the username
         String newJwtToken = jwtUtil.generateAccessToken(userDetails);
         // create a new refresh token for the user
-     //   RefreshToken newRefreshToken = createRefreshToken(username);
+        //   RefreshToken newRefreshToken = createRefreshToken(username);
         String newRefreshToken = jwtUtil.generateRefreshToken(userDetails);
         // return the new JWT token and the new refresh token
         return new AuthenticationResponse(newJwtToken, newRefreshToken);
