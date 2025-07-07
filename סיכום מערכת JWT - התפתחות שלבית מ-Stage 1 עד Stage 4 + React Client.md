@@ -1,6 +1,6 @@
 <div dir="rtl">
 
-# סיכום מערכת JWT - התפתחות שלבית מ-Stage 1 עד Stage 4 + React Client
+# סיכום מערכת JWT - התפתחות שלבית מ-Stage 1 עד Stage 5 Flask Server + React Client
 
 ## מבנה הפרויקט הכללי
 
@@ -15,6 +15,8 @@ JwtSecurity2024/                    (Parent POM)
 ├── Stage2/                        (אימות מלא)
 ├── Stage3/                        (Refresh Tokens)
 ├── Stage4/                        (Token Blacklist + IP Validation)
+├── Stage5/                        (Enterprise Security) with Stateless Architecture and Flask Server
+│   FlaskServer/                (Flask Server for JWT)
 └── Stage4-React-Vite/            (React Client Application)
 ```
 
@@ -422,6 +424,103 @@ export default defineConfig({
 - **Production ready** - מוכן לייצור
 - **Industry standards** - עקבי עם best practices
 
+
+
+<div dir="rtl">
+
+# Stage5 Application - מערכת אימות JWT עם אינטגרציית Flask
+
+## סקירה כללית
+
+זוהי מערכת אימות מתקדמת המשלבת שלוש טכנולוגיות:
+- **React Frontend** - ממשק משתמש מודרני עם Vite
+- **Spring Boot Backend** - שרת Java עם אבטחת JWT
+- **Flask Python Service** - שירות עיבוד נתונים נוסף
+- **MySQL Database** - בסיס נתונים יחסי
+
+## ארכיטקטורה כללית
+
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        A[React Vite App]
+        A1[AuthContext Provider]
+        A2[Protected Routes]
+        A3[UI Components]
+    end
+    
+    subgraph "Spring Boot Backend"
+        B[Spring Security]
+        B1[JWT Authentication Filter]
+        B2[Controllers Layer]
+        B3[Services Layer]
+        B4[Repository Layer]
+    end
+    
+    subgraph "External Services"
+        C[Flask Python Service]
+        C1[REST API Endpoints]
+        C2[Data Processing]
+    end
+    
+    subgraph "Database Layer"
+        D[MySQL Database]
+        D1[User Table]
+        D2[Role Table]
+        D3[Join Tables]
+    end
+    
+    subgraph "Security Components"
+        E[JWT Tokens]
+        E1[Access Token]
+        E2[Refresh Token]
+        E3[Token Blacklist]
+    end
+    
+    A --> B
+    B --> C
+    B --> D
+    B --> E
+    
+    A -.->|sessionStorage| F[Browser Storage]
+```
+
+## זרימת אימות מלאה
+
+```mermaid
+sequenceDiagram
+    participant U as User Browser
+    participant R as React App
+    participant S as Spring Security
+    participant DB as MySQL Database
+    participant F as Flask Service
+    
+    Note over U,F: Login Process
+    U->>R: הזנת פרטי התחברות
+    R->>S: POST /api/login
+    S->>DB: בדיקת משתמש וסיסמה
+    DB->>S: אישור פרטים
+    S->>S: יצירת JWT Tokens עם IP
+    S->>R: החזרת Access + Refresh tokens
+    R->>R: שמירה ב-sessionStorage
+    
+    Note over U,F: Protected API Call
+    R->>S: API request עם JWT token
+    S->>S: אימות טוקן + IP validation
+    S->>F: Forward request ל-Flask
+    F->>F: עיבוד נתונים
+    F->>S: Response עם נתונים
+    S->>R: החזרת תגובה ל-React
+    R->>U: הצגת תוצאות
+    
+    Note over U,F: Token Refresh
+    R->>S: Refresh token request
+    S->>S: אימות refresh token
+    S->>S: Token rotation - blacklist old token
+    S->>R: החזרת טוקנים חדשים
+```
+
+
 ## סיכום התהליך
 
 התפתחות המערכת מראה תהליך שלבי מקצועי:
@@ -430,7 +529,8 @@ export default defineConfig({
 2. **Stage 3**: שיפור חוויית משתמש עם Refresh Tokens
 3. **Stage 4**: אבטחה מתקדמת וביצועים enterprise
 4. **React Client**: ממשק משתמש מודרני ויעיל
+5. **Stage 5**: אינטגרציה עם Flask Service לעיבוד נתונים
 
-המערכת הסופית מספקת פתרון מלא, מאובטח ויעיל לאימות JWT עם React ו-Spring Boot, מוכן לסביבת production עם כל התכונות הנדרשות למערכת אמינה ומקצועית.
+המערכת הסופית מספקת פתרון מלא, מאובטח ויעיל לאימות JWT עם React ו-Spring Boot,Flask Server  מוכן לסביבת production עם כל התכונות הנדרשות למערכת אמינה ומקצועית.
 
 </div>
