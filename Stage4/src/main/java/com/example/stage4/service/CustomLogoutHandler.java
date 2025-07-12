@@ -109,7 +109,7 @@ public class CustomLogoutHandler implements LogoutSuccessHandler {
             return queryToken;
         }
         
-        System.out.println("⚠ No token found in request (neither header nor query parameter)");
+        System.out.println("No token found in request (neither header nor query parameter)");
         return null;
     }
 }
